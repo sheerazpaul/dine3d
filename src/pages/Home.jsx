@@ -22,9 +22,9 @@ import heroBurger from "../assets/hero-burger.webp";
 const EXPERIENCE_IMAGE = "https://loremflickr.com/900/900/platter?lock=1";
 
 const PANEL_ITEMS = [
-  { name: "Chicken Burger", price: "5.99", seed: "chicken-burger" },
-  { name: "Pizza Special", price: "8.99", seed: "pizza-special" },
-  { name: "French Fries", price: "3.99", seed: "french-fries" },
+  { name: "Chicken Burger", price: "5.99", image: heroBurger },
+  { name: "Pizza Special", price: "8.99", seed: "pizza", lock: 4 },
+  { name: "French Fries", price: "3.99", seed: "fries", lock: 1 },
 ];
 
 const STEPS = [
@@ -156,9 +156,9 @@ export default function Home() {
             </div>
 
             {PANEL_ITEMS.map((item) => (
-              <div key={item.seed} className="flex items-center gap-3 rounded-2xl p-2">
+              <div key={item.name} className="flex items-center gap-3 rounded-2xl p-2">
                 <img
-                  src={`https://loremflickr.com/80/80/${item.seed}`}
+                  src={item.image ?? `https://loremflickr.com/80/80/${item.seed}?lock=${item.lock}`}
                   alt={item.name}
                   onError={(e) => {
                     e.currentTarget.onerror = null;
