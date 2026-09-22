@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import { listRestaurants } from "../data/mock";
 import { ChefHatIcon, ChevronIcon } from "../components/Icons";
 
@@ -64,6 +65,7 @@ function DashboardPanel({ restaurants, totalCategories, totalProducts, qrCount }
               <img
                 src={r.coverImage}
                 alt={r.name}
+                loading="lazy"
                 onError={(e) => {
                   e.currentTarget.onerror = null;
                   e.currentTarget.src = `https://picsum.photos/seed/${r.id}/80/80`;
@@ -100,6 +102,7 @@ function RestaurantsPanel({ restaurants }) {
             <img
               src={r.coverImage}
               alt={r.name}
+              loading="lazy"
               onError={(e) => {
                 e.currentTarget.onerror = null;
                 e.currentTarget.src = `https://picsum.photos/seed/${r.id}/80/80`;
@@ -166,6 +169,7 @@ function ProductsPanel({ restaurants }) {
             <img
               src={p.image}
               alt={p.name}
+              loading="lazy"
               onError={(e) => {
                 e.currentTarget.onerror = null;
                 e.currentTarget.src = `https://picsum.photos/seed/${p.id}/80/80`;
@@ -337,7 +341,19 @@ export default function Admin() {
           </div>
         </header>
 
-        <main className="px-6 py-8 md:px-8">{panels[section]}</main>
+        <main className="px-6 py-8 md:px-8">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={section}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+            >
+              {panels[section]}
+            </motion.div>
+          </AnimatePresence>
+        </main>
       </div>
     </div>
   );

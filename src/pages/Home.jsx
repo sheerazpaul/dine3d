@@ -23,7 +23,11 @@ const EXPERIENCE_IMAGE = "https://loremflickr.com/900/900/platter?lock=1";
 
 const PANEL_ITEMS = [
   { name: "Chicken Burger", price: "5.99", image: heroBurger },
-  { name: "Pizza Special", price: "8.99", seed: "pizza", lock: 4 },
+  {
+    name: "Pizza Special",
+    price: "8.99",
+    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200&h=200&fit=crop",
+  },
   { name: "French Fries", price: "3.99", seed: "fries", lock: 1 },
 ];
 
@@ -346,6 +350,7 @@ export default function Home() {
               <img
                 src={EXPERIENCE_IMAGE}
                 alt="Plated dish in 3D preview"
+                loading="lazy"
                 onError={(e) => {
                   e.currentTarget.onerror = null;
                   e.currentTarget.src = "https://picsum.photos/seed/dine3d-3d/700/700";

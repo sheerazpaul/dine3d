@@ -6,6 +6,21 @@ import heroBurger from "../assets/hero-burger.webp";
 const img = (keyword, lock) => `https://loremflickr.com/600/600/${keyword}?lock=${lock}`;
 const cover = (keyword, lock) => `https://loremflickr.com/1200/700/${keyword}?lock=${lock}`;
 
+// Verified-working direct Unsplash CDN photos — reliable, no rate limiting,
+// used for burger/pizza dishes so the menu doesn't repeat a single photo.
+const unsplash = (id) => `https://images.unsplash.com/${id}?w=800&h=800&fit=crop`;
+const BURGER_PHOTOS = [
+  heroBurger,
+  unsplash("photo-1568901346375-23c9450c58cd"),
+  unsplash("photo-1550547660-d9450f859349"),
+  unsplash("photo-1571091718767-18b5b1457add"),
+];
+const PIZZA_PHOTOS = [
+  unsplash("photo-1513104890138-7c749659a591"),
+  unsplash("photo-1565299624946-b28f40a0ae38"),
+  unsplash("photo-1590947132387-155cc02f3212"),
+];
+
 // Small public sample glTF models (Khronos sample-models repo) used to
 // demonstrate the 3D viewer. Products without a model_url hide the viewer.
 const DUCK =
@@ -23,7 +38,7 @@ export const RESTAURANTS = [
       "Upscale casual comfort food — wood-fired mains, smash burgers, and a dessert case worth the trip alone.",
     cuisine: "American · Comfort",
     tag: "Fast Food",
-    coverImage: heroBurger,
+    coverImage: BURGER_PHOTOS[0],
     logoInitial: "Y",
     rating: 4.8,
     qrUrl: "/r/yumilicious",
@@ -76,7 +91,7 @@ export const RESTAURANTS = [
             name: "Yumilicious Cheese Burger",
             price: 12,
             description: "Beef patty, cheddar, house sauce, brioche bun.",
-            image: heroBurger,
+            image: BURGER_PHOTOS[1],
             model: DUCK,
             isAvailable: true,
           },
@@ -139,7 +154,7 @@ export const RESTAURANTS = [
     description: "Premium burgers, fresh ingredients and bold flavors.",
     cuisine: "Fast Food · Burgers",
     tag: "Fast Food",
-    coverImage: heroBurger,
+    coverImage: BURGER_PHOTOS[2],
     logoInitial: "B",
     rating: 4.7,
     qrUrl: "/r/burger-lab",
@@ -155,7 +170,7 @@ export const RESTAURANTS = [
             name: "Zinger Burger",
             price: 11,
             description: "Crispy chicken, fresh vegetables and signature sauce.",
-            image: heroBurger,
+            image: BURGER_PHOTOS[3],
             model: DUCK,
             isAvailable: true,
           },
@@ -165,7 +180,7 @@ export const RESTAURANTS = [
             name: "Beef Burger",
             price: 12,
             description: "Char-grilled beef patty, cheddar, house pickles.",
-            image: heroBurger,
+            image: BURGER_PHOTOS[0],
             model: "",
             isAvailable: true,
           },
@@ -175,7 +190,7 @@ export const RESTAURANTS = [
             name: "Cheese Burger",
             price: 10,
             description: "Double cheddar, caramelized onion, smoky sauce.",
-            image: heroBurger,
+            image: BURGER_PHOTOS[1],
             model: "",
             isAvailable: true,
           },
@@ -185,7 +200,7 @@ export const RESTAURANTS = [
             name: "BBQ Burger",
             price: 13,
             description: "Smoked beef patty, barbecue glaze, crispy onions.",
-            image: heroBurger,
+            image: BURGER_PHOTOS[2],
             model: "",
             isAvailable: true,
           },
@@ -195,7 +210,7 @@ export const RESTAURANTS = [
             name: "Chicken Burger",
             price: 10,
             description: "Grilled chicken breast, lettuce, garlic mayo.",
-            image: heroBurger,
+            image: BURGER_PHOTOS[3],
             model: "",
             isAvailable: true,
           },
@@ -205,7 +220,7 @@ export const RESTAURANTS = [
             name: "Spicy Burger",
             price: 12,
             description: "Fiery beef patty, jalapeños, chipotle sauce.",
-            image: heroBurger,
+            image: BURGER_PHOTOS[0],
             model: "",
             isAvailable: true,
           },
@@ -372,7 +387,7 @@ export const RESTAURANTS = [
     description: "Hand-tossed pizzas, wood-fired ovens and authentic Italian recipes.",
     cuisine: "Italian · Pizza",
     tag: "Italian",
-    coverImage: cover("pizza", 1),
+    coverImage: PIZZA_PHOTOS[0],
     logoInitial: "P",
     rating: 4.6,
     qrUrl: "/r/pizza-point",
@@ -388,7 +403,7 @@ export const RESTAURANTS = [
             name: "Margherita",
             price: 9,
             description: "San Marzano tomato, fresh mozzarella, basil.",
-            image: img("pizza", 1),
+            image: PIZZA_PHOTOS[0],
             model: DUCK,
             isAvailable: true,
           },
@@ -398,7 +413,7 @@ export const RESTAURANTS = [
             name: "Pepperoni Pizza",
             price: 11,
             description: "Spicy pepperoni, mozzarella, house tomato sauce.",
-            image: img("pizza", 2),
+            image: PIZZA_PHOTOS[1],
             model: "",
             isAvailable: true,
           },
@@ -408,7 +423,7 @@ export const RESTAURANTS = [
             name: "Veggie Supreme",
             price: 10,
             description: "Bell peppers, olives, mushroom, onion, mozzarella.",
-            image: img("pizza", 3),
+            image: PIZZA_PHOTOS[2],
             model: "",
             isAvailable: true,
           },

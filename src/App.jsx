@@ -1,30 +1,46 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
-import Restaurants from "./pages/Restaurants";
-import RestaurantMenu from "./pages/RestaurantMenu";
-import ProductDetail from "./pages/ProductDetail";
-import About from "./pages/About";
-import Admin from "./pages/Admin";
+
+// Route-level code splitting — everything except the landing page (which
+// must paint immediately) loads on demand. ProductDetail in particular pulls
+// in the heavy React Three Fiber / three.js model viewer, so keeping it out
+// of the initial bundle meaningfully shrinks first-load JS.
+const Restaurants = lazy(() => import("./pages/Restaurants"));
+const RestaurantMenu = lazy(() => import("./pages/RestaurantMenu"));
+const ProductDetail = lazy(() => import("./pages/ProductDetail"));
+const About = lazy(() => import("./pages/About"));
+const Admin = lazy(() => import("./pages/Admin"));
+
+function RouteFallback() {
+  return (
+    <div className="flex min-h-[60vh] items-center justify-center">
+      <div className="h-9 w-9 animate-spin rounded-full border-2 border-hairline-strong border-t-amber" />
+    </div>
+  );
+}
 
 export default function App() {
   return (
-    <Routes>
-      {/* Admin dashboard has its own sidebar chrome, no public navbar/footer */}
-      <Route path="/admin" element={<Admin />} />
+    <Suspense fallback={<RouteFallback />}>
+      <Routes>
+        {/* Admin dashboard has its own sidebar chrome, no public navbar/footer */}
+        <Route path="/admin" element={<Admin />} />
 
-      <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/restaurants" element={<Restaurants />} />
-        <Route path="/restaurants/:restaurantSlug" element={<RestaurantMenu />} />
-        <Route
-          path="/restaurants/:restaurantSlug/product/:productSlug"
-          element={<ProductDetail />}
-        />
-        {/* QR entry point — resolves straight to the public menu */}
-        <Route path="/r/:restaurantSlug" element={<RestaurantMenu />} />
-        <Route path="/about" element={<About />} />
-      </Route>
-    </Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/restaurants" element={<Restaurants />} />
+          <Route path="/restaurants/:restaurantSlug" element={<RestaurantMenu />} />
+          <Route
+            path="/restaurants/:restaurantSlug/product/:productSlug"
+            element={<ProductDetail />}
+          />
+          {/* QR entry point — resolves straight to the public menu */}
+          <Route path="/r/:restaurantSlug" element={<RestaurantMenu />} />
+          <Route path="/about" element={<About />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }

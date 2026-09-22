@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import ProductCard from "../components/ProductCard";
+import Reveal from "../components/Reveal";
 import { MapPinIcon, ChevronIcon } from "../components/Icons";
 import { getRestaurant } from "../data/mock";
 
@@ -27,7 +29,11 @@ export default function RestaurantMenu() {
   return (
     <div>
       <div className="relative h-52 w-full overflow-hidden sm:h-72 md:h-96">
-        <img
+        <motion.img
+          key={restaurant.id}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           src={restaurant.coverImage}
           alt={restaurant.name}
           onError={(e) => {
@@ -71,9 +77,11 @@ export default function RestaurantMenu() {
           </div>
         </div>
 
-        <p className="relative z-10 mt-5 max-w-2xl text-[15px] leading-relaxed text-muted">
-          {restaurant.description}
-        </p>
+        <Reveal delay={0.1}>
+          <p className="relative z-10 mt-5 max-w-2xl text-[15px] leading-relaxed text-muted">
+            {restaurant.description}
+          </p>
+        </Reveal>
 
         <div className="no-scrollbar sticky top-0 z-20 mt-8 flex gap-2 overflow-x-auto bg-cream py-3">
           {restaurant.categories.map((cat, i) => (
@@ -93,25 +101,40 @@ export default function RestaurantMenu() {
         <div className="border-b border-hairline" />
 
         <div className="py-8">
-          {category.products.length > 0 ? (
-            <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
-              {category.products.map((product, i) => (
-                <ProductCard
-                  key={product.id}
-                  restaurantSlug={restaurant.slug}
-                  product={product}
-                  index={i}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="flex flex-col items-center gap-2 py-16 text-center">
-              <span className="font-display text-sm font-bold text-ink-strong">
-                Nothing here yet
-              </span>
-              <p className="text-sm text-muted">No items in this category yet.</p>
-            </div>
-          )}
+          <AnimatePresence mode="wait">
+            {category.products.length > 0 ? (
+              <motion.div
+                key={category.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25, ease: "easeInOut" }}
+                className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4"
+              >
+                {category.products.map((product, i) => (
+                  <ProductCard
+                    key={product.id}
+                    restaurantSlug={restaurant.slug}
+                    product={product}
+                    index={i}
+                  />
+                ))}
+              </motion.div>
+            ) : (
+              <motion.div
+                key={`${category.id}-empty`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="flex flex-col items-center gap-2 py-16 text-center"
+              >
+                <span className="font-display text-sm font-bold text-ink-strong">
+                  Nothing here yet
+                </span>
+                <p className="text-sm text-muted">No items in this category yet.</p>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </div>
