@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Manrope", system-ui, sans-serif;
+  --font-body: system-ui, -apple-system, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+
+  --color-cream: #f8f5ee;
+  --color-cream-soft: #f3efe5;
+  --color-paper: #eee9df;
+
+  --color-ink: #171717;
+  --color-ink-strong: #171717;
+  --color-muted: #6b6459;
+  --color-muted-soft: #5a5348;
+  --color-hairline: #e6dfd0;
+  --color-hairline-strong: #ddd4c0;
+  --color-chip: #eee9df;
+
+  --color-navy: #171717;
+  --color-navy-deep: #171717;
+  --color-navy-soft: #262626;
+  --color-navy-tint: #f0e2da;
+  --color-navy-tint-text: #b0431c;
+
+  --color-amber: #f45b2a;
+  --color-amber-soft: #ff8a5b;
+  --color-amber-deep: #d94a1e;
+}
+
+body {
+  background: var(--color-cream);
+  font-family: var(--font-body);
+  color: var(--color-ink);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.bg-noise {
+  background-image: radial-gradient(#17171710 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
