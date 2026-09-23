@@ -11,7 +11,6 @@ const Restaurants = lazy(() => import("./pages/Restaurants"));
 const RestaurantMenu = lazy(() => import("./pages/RestaurantMenu"));
 const ProductDetail = lazy(() => import("./pages/ProductDetail"));
 const About = lazy(() => import("./pages/About"));
-const Admin = lazy(() => import("./pages/Admin"));
 
 function RouteFallback() {
   return (
@@ -25,9 +24,6 @@ export default function App() {
   return (
     <Suspense fallback={<RouteFallback />}>
       <Routes>
-        {/* Admin dashboard has its own sidebar chrome, no public navbar/footer */}
-        <Route path="/admin" element={<Admin />} />
-
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/restaurants" element={<Restaurants />} />

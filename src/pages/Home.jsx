@@ -16,19 +16,29 @@ import {
   DragIcon,
   FullscreenIcon,
 } from "../components/Icons";
+import heroBurger from "../assets/hero-burger-3d.webp";
 import heroBg from "../assets/hero-bg.webp";
-import heroBurger from "../assets/hero-burger.webp";
 
 const EXPERIENCE_IMAGE = "https://loremflickr.com/900/900/platter?lock=1";
 
+const AVATARS = ["#f45b2a", "#171717", "#d94a1e", "#6b6459"];
+
 const PANEL_ITEMS = [
-  { name: "Chicken Burger", price: "5.99", image: heroBurger },
+  {
+    name: "Chicken Burger",
+    price: "5.99",
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200&h=200&fit=crop",
+  },
   {
     name: "Pizza Special",
     price: "8.99",
     image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200&h=200&fit=crop",
   },
-  { name: "French Fries", price: "3.99", seed: "fries", lock: 1 },
+  {
+    name: "French Fries",
+    price: "3.99",
+    image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=200&h=200&fit=crop",
+  },
 ];
 
 const STEPS = [
@@ -74,7 +84,6 @@ export default function Home() {
         className="fixed inset-0 -z-10 bg-cream bg-cover bg-center"
         style={{ backgroundImage: `url(${heroBg})` }}
       />
-      <div className="fixed inset-0 -z-10 bg-cream/70" />
 
       {/* Hero */}
       <section className="relative overflow-hidden">
@@ -116,6 +125,21 @@ export default function Home() {
                   How QR Works
                 </span>
               </a>
+            </div>
+            <div className="flex items-center gap-3 pt-2">
+              <div className="flex -space-x-3">
+                {AVATARS.map((color, i) => (
+                  <span
+                    key={i}
+                    className="h-9 w-9 rounded-full border-2 border-cream"
+                    style={{ backgroundColor: color }}
+                  />
+                ))}
+              </div>
+              <div className="text-xs leading-tight text-muted">
+                <span className="block font-display font-bold text-ink-strong">1200+</span>
+                Food Lovers Explore Daily
+              </div>
             </div>
           </motion.div>
 
@@ -162,11 +186,11 @@ export default function Home() {
             {PANEL_ITEMS.map((item) => (
               <div key={item.name} className="flex items-center gap-3 rounded-2xl p-2">
                 <img
-                  src={item.image ?? `https://loremflickr.com/80/80/${item.seed}?lock=${item.lock}`}
+                  src={item.image}
                   alt={item.name}
                   onError={(e) => {
                     e.currentTarget.onerror = null;
-                    e.currentTarget.src = `https://picsum.photos/seed/${item.seed}/80/80`;
+                    e.currentTarget.src = `https://picsum.photos/seed/${item.name}/80/80`;
                   }}
                   className="h-11 w-11 flex-none rounded-full object-cover"
                 />
@@ -233,33 +257,33 @@ export default function Home() {
             </h2>
           </Reveal>
 
-          <div className="flex flex-col gap-10 md:flex-row md:items-start md:gap-2">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((step, i) => {
               const Icon = step.icon;
               return (
-                <div key={step.n} className="flex flex-1 items-start gap-4 md:flex-col md:gap-0">
-                  <div className="flex flex-col items-center gap-1 md:items-start">
-                    <span className="font-display text-xs font-semibold text-hairline-strong">
-                      {step.n}
-                    </span>
-                    <Reveal delay={i * 0.08}>
-                      <span className="flex h-16 w-16 items-center justify-center rounded-full border border-hairline-strong bg-white text-ink-strong">
+                <Reveal key={step.n} delay={i * 0.08} className="relative">
+                  <div className="flex h-full min-h-[220px] flex-col gap-5 rounded-3xl border border-hairline bg-white p-6 shadow-[0_16px_40px_-28px_rgba(23,23,23,0.35)] transition-transform hover:-translate-y-1">
+                    <div className="flex items-center justify-between">
+                      <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-navy-tint text-navy-tint-text">
                         <Icon className="h-6 w-6" />
                       </span>
-                    </Reveal>
-                  </div>
-                  <div className="flex-1 pt-1 md:mt-5 md:pt-0">
-                    <h3 className="font-display text-base font-bold text-ink-strong">
-                      {step.title}
-                    </h3>
-                    <p className="mt-1 max-w-[210px] text-sm leading-relaxed text-muted">
-                      {step.body}
-                    </p>
+                      <span className="font-display text-2xl font-extrabold text-hairline-strong">
+                        {step.n}
+                      </span>
+                    </div>
+                    <div>
+                      <h3 className="font-display text-base font-bold text-ink-strong">
+                        {step.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-muted">{step.body}</p>
+                    </div>
                   </div>
                   {i < STEPS.length - 1 && (
-                    <ChevronIcon className="mt-6 hidden h-5 w-5 flex-none text-hairline-strong md:block" />
+                    <span className="absolute -right-3.5 top-1/2 z-10 hidden h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full border border-hairline-strong bg-cream text-hairline-strong lg:flex">
+                      <ChevronIcon className="h-3.5 w-3.5" />
+                    </span>
                   )}
-                </div>
+                </Reveal>
               );
             })}
           </div>

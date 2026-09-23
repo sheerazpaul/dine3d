@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ChefHatIcon, FacebookIcon, InstagramIcon, XIcon, YoutubeIcon } from "./Icons";
+import Dine3DLogo from "./Dine3DLogo";
+import { FacebookIcon, InstagramIcon, XIcon, YoutubeIcon } from "./Icons";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -21,8 +22,7 @@ export default function Footer() {
         <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
           <div className="flex flex-col items-center gap-1 md:items-start">
             <Link to="/" className="flex items-center gap-2">
-              <ChefHatIcon className="h-6 w-6 text-amber" />
-              <span className="font-display text-lg font-extrabold text-ink-strong">Dine3D</span>
+              <Dine3DLogo className="h-7 w-auto" />
             </Link>
             <span className="text-xs text-muted">Good Food. Better Experience.</span>
           </div>

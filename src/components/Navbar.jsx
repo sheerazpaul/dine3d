@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChefHatIcon, SearchIcon, ArrowRightIcon } from "./Icons";
+import Dine3DLogo from "./Dine3DLogo";
+import { SearchIcon, ArrowRightIcon } from "./Icons";
 
 const LINKS = [
   { to: "/", label: "Home" },
@@ -30,10 +31,7 @@ export default function Navbar() {
         }`}
       >
         <Link to="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-          <ChefHatIcon className="h-8 w-8 text-amber" />
-          <span className="font-display text-xl font-extrabold tracking-tight text-ink-strong">
-            Dine3D
-          </span>
+          <Dine3DLogo className="h-9 w-auto" />
         </Link>
 
         <nav className="hidden items-center gap-9 md:flex">

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 90" width="350" height="90">
+  <g transform="translate(2, 2)">
+    <path d="M 24 78 C 24 54, 8 40, 18 24 C 28 8, 54 5, 66 18 C 78 6, 104 12, 100 32 C 96 46, 84 46, 78 38 C 75 28, 87 18, 102 22" 
+          stroke="#FA5400" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <path d="M 24 78 C 24 54, 32 48, 38 48" 
+          stroke="#FA5400" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  </g>
+  <text x="122" y="66" font-family="'Manrope', system-ui, -apple-system, sans-serif" font-weight="900" font-size="64" letter-spacing="-1.5">
+    <tspan fill="#1C1B1B">Dine</tspan><tspan fill="#FA5400">3D</tspan>
+  </text>
+</svg>

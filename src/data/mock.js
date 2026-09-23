@@ -1,7 +1,7 @@
 // Mirrors the backend data model:
 // Restaurant 1:N Category 1:N Product, Restaurant 1:N QRCode
 
-import heroBurger from "../assets/hero-burger.webp";
+import heroBurger from "../assets/hero-sequence/scene-09.png";
 
 const img = (keyword, lock) => `https://loremflickr.com/600/600/${keyword}?lock=${lock}`;
 const cover = (keyword, lock) => `https://loremflickr.com/1200/700/${keyword}?lock=${lock}`;
