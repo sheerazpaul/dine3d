@@ -43,24 +43,25 @@ export default function RestaurantMenu() {
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink-strong/75 via-ink-strong/15 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-ink-strong/45 to-transparent" />
 
         <div className="absolute inset-x-0 top-0 mx-auto flex max-w-7xl items-center justify-between px-5 pt-5 md:px-8">
           <Link
             to="/restaurants"
-            className="flex items-center gap-1.5 rounded-full bg-white/15 px-3.5 py-2 font-display text-xs font-bold text-white backdrop-blur transition-colors hover:bg-white/25"
+            className="flex items-center gap-1.5 rounded-full bg-ink-strong/40 px-3.5 py-2 font-display text-xs font-bold text-white backdrop-blur transition-colors hover:bg-ink-strong/55"
           >
             <ChevronIcon className="h-3.5 w-3.5 rotate-180" />
             Restaurants
           </Link>
-          <span className="flex items-center gap-1.5 rounded-full bg-white/15 px-3.5 py-2 font-display text-xs font-bold text-white backdrop-blur">
+          <span className="flex items-center gap-1.5 rounded-full bg-ink-strong/40 px-3.5 py-2 font-display text-xs font-bold text-white backdrop-blur">
             ★ {restaurant.rating}
           </span>
         </div>
       </div>
 
       <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="relative z-10 -mt-14 flex flex-col items-start gap-4 sm:-mt-16 sm:flex-row sm:items-end">
-          <div className="flex h-20 w-20 flex-none items-center justify-center rounded-2xl border-4 border-cream bg-ink-strong font-display text-2xl font-extrabold uppercase text-cream shadow-lg sm:h-24 sm:w-24">
+        <div className="relative z-10 flex flex-col items-start gap-4 sm:flex-row sm:items-end">
+          <div className="-mt-14 flex h-20 w-20 flex-none items-center justify-center rounded-2xl border-4 border-cream bg-ink-strong font-display text-2xl font-extrabold uppercase text-cream shadow-lg sm:-mt-16 sm:h-24 sm:w-24">
             {restaurant.logoInitial}
           </div>
           <div className="pb-1">
